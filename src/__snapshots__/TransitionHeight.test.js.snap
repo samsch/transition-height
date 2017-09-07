@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TransitionHeight initially renders 1`] = `
+<div
+  style={
+    Object {
+      "height": undefined,
+      "overflowY": "auto",
+      "transition": "height 0.2s ease",
+    }
+  }
+>
+  <div
+    style={
+      Object {
+        "overflowY": "auto",
+      }
+    }
+  >
+    <span>
+      Content
+    </span>
+  </div>
+</div>
+`;

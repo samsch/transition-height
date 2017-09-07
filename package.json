@@ -1,0 +1,43 @@
+{
+  "name": "@samsch/transition-height",
+  "version": "0.0.0",
+  "description": "A React component which transitions its height based on the contents for a props change.",
+  "main": "lib/TransitionHeight.js",
+  "scripts": {
+    "build": "rm -rf lib && babel -d lib/ src/ --ignore spec.js,test.js",
+    "prepublish": "npm run build",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:samsch/transition-height.git"
+  },
+  "keywords": [
+    "store",
+    "react",
+    "samsch",
+    "transition",
+    "animation",
+    "slide"
+  ],
+  "author": "Samuel Scheiderich",
+  "homepage": "https://github.com/samsch/transition-height",
+  "license": "0BSD",
+  "peerDependencies": {
+    "react": "^15.6.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^7.2.3",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.6.1",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.3.0",
+    "jest": "^21.0.1",
+    "prettier": "^1.6.1",
+    "react": "^15.6.1",
+    "react-test-renderer": "^15.6.1"
+  }
+}
