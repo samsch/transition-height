@@ -1,6 +1,6 @@
 {
   "name": "@samsch/transition-height",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A React component which transitions its height based on the contents for a props change.",
   "main": "lib/TransitionHeight.js",
   "scripts": {
