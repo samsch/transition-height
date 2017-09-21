@@ -46,7 +46,7 @@ class TransitionHeight extends React.Component {
             }, this.props.transitionTimeSeconds * 1000);
           }
         );
-      }, 0);
+      }, 20);
     }
   }
   render() {
