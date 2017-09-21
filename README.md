@@ -3,7 +3,7 @@
 ## Installation and use
 Install into your project with `npm i @samsch/transition-height` (for Node.js), or `npm i -D @samsch/transition-height` (for Webpack/Browserify or other bundled projects).
 
-To use TransitionHeight, it expects a `trigger` prop and children, and can take an optional `transitionTimeSeconds` prop.
+To use TransitionHeight, it expects a `trigger` prop and children (or you can do a [Full collapse](#full-collapse) with `collapsed`), and can take an optional `transitionTimeSeconds` prop.
 
 ### Basic example
 ```jsx
@@ -31,6 +31,21 @@ const SomeComponent = props => (
 ```
 In this example, for any new array in (or an immutable change to) `props.list`, the list will transition to the new required size.
 
+## Full collapse
+
+If you want to just toggle the animation from real height to completely closed (height: 0px), then you can use the `collapsed` prop. When it changes to true, the component will collapse wrapper to 0px tall. When it changes to false, the wrapper will transition from 0px to the height of the contents.
+
+### Collapse example
+```jsx
+const SomeComponent = props => (
+  <TransitionHeight collapsed={!props.open}>
+    {props.content}
+  </TransitionHeight>
+);
+```
+
+You can use both `trigger` and `collapsed`, but attempting to transition both at the same time isn't currently supported (it *might* work).
+
 ## API
 
 ### default export TransitionHeight
@@ -50,6 +65,11 @@ This prop is simply compared against it's previous reference as the decision to 
 - Number [default: `.2`]
 
 This is a numeric value in seconds which controls how long the transition takes.
+
+### props.collapsed
+- Boolean
+
+The prop allows you to transition between 0px height and the content height without changing the contents (which are hidden with `overflowY: hidden`).
 
 ## ES support
 This library is compiled with Babel to support IE11, last 3 Safari, and last 2 Chrome and Firefox. Publically, it expects ES6 methods/objects to exist (natively or polyfilled). Realistically, you could test it and find that it might work in a pure ES5 environment.

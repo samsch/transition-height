@@ -10,40 +10,51 @@ class TransitionHeight extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: undefined,
+      height: this.props.collapsed ? '0px' : undefined,
     };
     this.getWrapperDiv = div => {
       this.divEl = div;
     };
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.trigger !== this.props.trigger) {
+    if (
+      nextProps.trigger !== this.props.trigger ||
+      nextProps.collapsed !== this.props.collapsed
+    ) {
       this.setState({
-        height: this.divEl.offsetHeight,
+        height: this.props.collapsed ? '0px' : this.divEl.offsetHeight + 'px',
       });
     }
   }
   componentDidUpdate(prevProps) {
-    if (this.state.height != null && prevProps.trigger !== this.props.trigger) {
-      this.setState(
-        {
-          height: this.divEl.offsetHeight,
-        },
-        () => {
-          setTimeout(() => {
-            this.setState({
-              height: undefined,
-            });
-          }, this.props.transitionTimeSeconds * 1000);
-        }
-      );
+    if (
+      (this.state.height != null && prevProps.trigger !== this.props.trigger) ||
+      prevProps.collapsed !== this.props.collapsed
+    ) {
+      setTimeout(() => {
+        this.setState(
+          {
+            height: this.props.collapsed
+              ? '0px'
+              : this.divEl.offsetHeight + 'px',
+          },
+          () => {
+            setTimeout(() => {
+              this.setState({
+                height: this.props.collapsed ? '0px' : undefined,
+              });
+            }, this.props.transitionTimeSeconds * 1000);
+          }
+        );
+      }, 0);
     }
   }
   render() {
     const outerWrapperStyle = {
       transition: 'height ' + this.props.transitionTimeSeconds + 's ease',
       height: this.state.height,
-      overflowY: this.state.height == null ? 'auto' : 'hidden',
+      overflowY:
+        !this.props.collapsed && this.state.height == null ? 'auto' : 'hidden',
     };
     return (
       <div style={outerWrapperStyle}>
